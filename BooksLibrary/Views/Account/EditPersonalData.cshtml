@@ -1,0 +1,84 @@
+﻿@using BooksLibrary.HtmlHelperClass
+@model BooksLibrary.Models.AccountViewModel.EditPersonalDataViewModel
+
+@{
+    ViewBag.Title = "Edytuj dane osobowe";
+}
+
+<h2>Edytuj dane osobowe</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Dane osobowe</legend>
+        @Html.HiddenFor(model => model.UserId)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Gender)
+        </div>
+
+        <div class="editor-field">
+            @{var genderList = Enum.GetValues(typeof(BooksLibrary.Business.Models.Gender));
+              foreach (var gender in genderList)
+              {
+                @Html.RadioButtonFor(model => model.Gender, gender)
+                @Html.GenderTranstateToPL((BooksLibrary.Business.Models.Gender)gender)
+              }
+            }
+            @Html.ValidationMessageFor(model => model.Gender)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserIsEnabled)
+        </div>
+        <div class="editor-field">
+            @Html.BoolToYesOrNo(Model.UserIsEnabled)
+            @Html.ValidationMessageFor(model => model.UserIsEnabled)
+        </div>
+
+        <br />
+        <p>
+            <input type="submit" value="Zapisz" class="button" />
+            @Html.ActionLink("Anuluj", "Manage", null, new { @class = "button" })
+        </p>
+
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

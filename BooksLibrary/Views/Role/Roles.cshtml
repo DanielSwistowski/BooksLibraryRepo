@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Uprawnienia";
+}
+
+<h2>Uprawnienia</h2>
+
+<p>
+    @Html.ActionLink("Utwórz nowe", "CreateRole")
+</p>
+<br />
+
+@foreach (var role in Model)
+{
+    <div class="display-label">
+        @role
+    </div>
+    <div class="display-field">
+        @Html.ActionLink("Usuń", "DeleteRole", new { roleName = @role })
+    </div>
+}
+
+<br />
+<p>
+    @if (TempData["userName"] != null)
+    {
+        @Html.ActionLink("Wstecz", "UserSettings", "Account", new { userName = TempData["userName"] }, new { @class = "button" })
+        TempData.Keep("userName");
+    }
+    else
+    {
+        @Html.ActionLink("Wstecz", "Users", "Account", null, new { @class = "button" })
+    }
+    
+</p>

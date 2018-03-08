@@ -1,0 +1,50 @@
+﻿@model BooksLibrary.Models.ManagementViewModels.ReturnBookViewModel
+
+@{
+    ViewBag.Title = "Potwierdź zwrot książki";
+}
+
+<h2>Potwierdź zwrot książki</h2>
+
+<h3>Czy na pewno chcesz zwrócić wybraną książkę?</h3>
+
+<fieldset>
+    <legend>Książka</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Author)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Author)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.UserFullName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserFullName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ReturnDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReturnDate)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("returnUrl", Request.UrlReferrer)
+    <p>
+        <input type="submit" value="Zwróć" class="button" />
+        @Html.ActionLink("Anuluj", "RedirectToReferrerUrl", new { @returnUrl = Request.UrlReferrer, @baseAction = "RentsManagement" }, new { @class = "button" })
+    </p>
+}

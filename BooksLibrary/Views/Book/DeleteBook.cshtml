@@ -1,0 +1,63 @@
+﻿@model BooksLibrary.Models.BookViewModels.BookViewModel
+
+@{
+    ViewBag.Title = "Usuń książkę";
+}
+
+<h2>Usuń książkę</h2>
+
+<h3>Czy na pewno chcesz usunąć wybraną książkę?</h3>
+<fieldset>
+    <legend>Książka</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Author)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Author)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ISBN)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ISBN)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PublishingHouse)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PublishingHouse)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReleaseDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReleaseDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Quantity)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Quantity)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.Hidden("returnUrl",(object)ViewBag.ReturnUrl)
+    <p>
+        <input type="submit" value="Usuń" class ="button" />
+        @Html.ActionLink("Anuluj", "RedirectToReferrerUrl", new { @returnUrl = ViewBag.ReturnUrl }, new { @class = "button" })
+    </p>
+}

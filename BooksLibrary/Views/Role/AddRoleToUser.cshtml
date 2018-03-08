@@ -1,0 +1,41 @@
+﻿@model BooksLibrary.Models.RoleViewModels.AddOrDeleteUserRoleViewModel
+
+@{
+    ViewBag.Title = "Dodaj uprawnienia";
+}
+
+<h2>Dodaj uprawnienia</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Uprawnienia</legend>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model=>model.UserName)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.RoleName)
+        </div>
+        <div class="display-field">
+            @Html.DropDownListFor(model => model.RoleName, ViewBag.Roles as IEnumerable<SelectListItem>, "Wybierz...")
+            @Html.ValidationMessageFor(model => model.RoleName)
+        </div>
+
+        <br />
+        <p>
+            <input type="submit" value="Zapisz" class="button" />
+            @Html.ActionLink("Wstecz", "UserSettings", "Account", new { userName = Model.UserName }, new { @class = "button" })
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

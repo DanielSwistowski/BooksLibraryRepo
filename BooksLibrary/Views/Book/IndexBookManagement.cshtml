@@ -1,0 +1,79 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<BooksLibrary.Models.BookViewModels.BookViewModel>
+
+@{
+    ViewBag.Title = "Książki";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+<h2>Książki</h2>
+
+<p style="margin-bottom:10px">
+    @Html.ActionLink("Dodaj książkę", "AddBook", null, new { @class = "button" })
+</p>
+
+<div id="categories">
+    @{Html.RenderAction("CategoriesPartial", "Category", new { selectedCategory = ViewBag.CategoryFilter, management = true });}
+</div>
+
+<br />
+@using (Html.BeginForm("IndexBookManagement", "Book", FormMethod.Get))
+{
+    <p>
+        Tytył książki: @Html.TextBox("searchBook", ViewBag.SearchBook as string)
+        Autor: @Html.TextBox("searchAuthor", ViewBag.SearchAuthor as string)
+        <input type="submit" value="Szukaj" />
+    </p>    
+}
+
+<table>
+    <tr>
+        <th>Tytuł
+        </th>
+        <th>Autor
+        </th>
+        <th>ISBN
+        </th>
+        <th>Wydawnictwo
+        </th>
+        <th>Data wydania
+        </th>
+        <th>Ilość
+        </th>
+        <th>Opcje
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishingHouse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Edytuj", "EditBook", new { bookId = item.BookId })
+                @Html.ActionLink("Usuń", "DeleteBook", new { bookId = item.BookId })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+
+@Html.PagedListPager(Model, page => Url.Action("IndexBookManagement", new { page, searchBook = ViewBag.SearchBook, searchAuthor = ViewBag.SearchAuthor }))

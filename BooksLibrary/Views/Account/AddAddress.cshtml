@@ -1,0 +1,60 @@
+﻿@model BooksLibrary.Models.AccountViewModel.AddressViewModel
+
+@{
+    ViewBag.Title = "Adres użytkownika";
+}
+
+<h2>Adres użytkownika</h2>
+
+<h3>Aby mieć możliwość dokonania rezerwacji książki, należy uzupełnić swoje dane adresowe</h3>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Dane adresowe</legend>
+        @Html.HiddenFor(model => model.UserId)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.City)
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Street)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Street)
+            @Html.ValidationMessageFor(model => model.Street)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HouseNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HouseNumber)
+            @Html.ValidationMessageFor(model => model.HouseNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ZipCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ZipCode)
+            @Html.ValidationMessageFor(model => model.ZipCode)
+        </div>
+
+        <br />
+        <p>
+            <input type="submit" value="Zapisz" class="button" />
+            @Html.ActionLink("Anuluj", "Index","Home", null, new { @class = "button" })
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

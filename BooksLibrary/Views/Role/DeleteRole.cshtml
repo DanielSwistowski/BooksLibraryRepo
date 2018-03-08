@@ -1,0 +1,15 @@
+﻿@model string
+@{
+    ViewBag.Title = "Usuń uprawnienie";
+}
+
+<h2>Usuń uprawnienie: @Model</h2>
+
+<h3>Czy na pewno chcesz usunąć wybrane uprawnienie?</h3>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <input type="submit" value="Usuń" class = "button" />
+    @Html.ActionLink("Anuluj","Roles", null, new { @class = "button" })
+}

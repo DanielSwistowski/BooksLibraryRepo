@@ -1,0 +1,33 @@
+﻿@model BooksLibrary.Models.RoleViewModels.AddOrDeleteUserRoleViewModel
+
+@{
+    ViewBag.Title = "Usuń uprawnienie użytkownika";
+}
+
+<h2>Usuń uprawnienie użytkownika</h2>
+
+<h3>Czy chcesz usunąć wybrane uprawnienie użytkownika?</h3>
+<fieldset>
+    <legend>Szczegóły</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RoleName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoleName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Usuń" class="button" />
+        @Html.ActionLink("Wstecz", "UserSettings", "Account", new { userName = Model.UserName }, new { @class = "button" })
+    </p>
+}

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BooksLibrary.Models.ReservationViewModels.UserReservationsViewModel>
+
+@{
+    ViewBag.Title = "Rezerwacje";
+}
+
+<h2>Rezerwacje</h2>
+
+@Html.ValidationSummary(true)
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfReceipt)
+        </th>
+        <th>
+            Opcje
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    
+    string selectedRow = "";
+    if (item.BookId == ViewBag.BookID)
+    {
+        selectedRow = "selectedrow";
+    }
+    
+    <tr class="@selectedRow">
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfReceipt)
+        </td>
+        <td>
+            @Html.ActionLink("Anuluj rezerwację", "DeleteReservation", new { reservationId = item.ReservationId })
+        </td>
+    </tr>
+}
+
+</table>

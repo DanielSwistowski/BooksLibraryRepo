@@ -1,0 +1,59 @@
+﻿@model BooksLibrary.Models.BookViewModels.BookViewModel
+
+@{
+    ViewBag.Title = "Potwierdź rezerwację";
+}
+
+@Html.ValidationSummary(true)
+
+<h2>Potwierdź rezerwację</h2>
+
+<h3>Czy na pewno chcesz zarezerwować wybraną książkę?</h3>
+<fieldset>
+    <legend>Książka</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Author)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Author)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ISBN)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ISBN)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PublishingHouse)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PublishingHouse)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ReleaseDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReleaseDate)
+    </div>
+
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+     @Html.Hidden("returnUrl", Request.UrlReferrer)
+    <p>
+        <input type="submit" value="Zarezerwuj" class="button" />
+        @Html.ActionLink("Anuluj", "Back", "Book", new { @returnUrl = Request.UrlReferrer }, new { @class = "button" })
+    </p>
+}

@@ -1,0 +1,57 @@
+﻿@model BooksLibrary.Models.AccountViewModel.ContactWithAdministratorViewModel
+
+@{
+    ViewBag.Title = "Wiadomość do administratora";
+}
+
+<h2>Wiadomość do administratora</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Wiadomość</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MessageSubject)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MessageSubject)
+            @Html.ValidationMessageFor(model => model.MessageSubject)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Message)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Message)
+            @Html.ValidationMessageFor(model => model.Message)
+        </div>
+
+        <br />
+        <p>
+            <input type="submit" value="Wyślij" class="button" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

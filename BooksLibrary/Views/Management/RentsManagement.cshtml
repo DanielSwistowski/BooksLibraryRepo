@@ -1,0 +1,63 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<BooksLibrary.Models.ManagementViewModels.RentsManagementViewModel>
+
+@{
+    ViewBag.Title = "Wszystkie wypożyczone książki";
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+<h2>Wszystkie wypożyczone książki</h2>
+
+@using (Html.BeginForm("RentsManagement", "Management", FormMethod.Get))
+{
+    <p>
+        Imię: @Html.TextBox("searchUserFirstName",ViewBag.SearchUserFirstName as string)
+        Nazwisko: @Html.TextBox("searchUserLastName", ViewBag.SearchUserLastName as string)
+        Książka: @Html.TextBox("searchBook",ViewBag.SearchBook as string)
+        <input type="submit" value="Szukaj" />
+    </p>
+}
+
+<table>
+    <tr>
+        <th>
+            Użytkownik
+        </th>
+        <th>
+            Tytuł książki
+        </th>
+        <th>
+            Autor
+        </th>
+        <th>
+            Termin zwrotu
+        </th>
+        <th>
+            Opcje
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserFullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReturnDate)
+        </td>
+        <td>
+            @Html.ActionLink("Zwróć", "ReturnBook", new { rentId = item.RentId, userId = item.UserId })
+        </td>
+    </tr>
+}
+</table>
+<br/>
+@Html.PagedListPager(Model, page => Url.Action("RentsManagement", new { page, searchUserFirstName = ViewBag.SearchUserFirstName, searchUserLastName = ViewBag.SearchUserLastName,searchBook = ViewBag.SearchBook}))

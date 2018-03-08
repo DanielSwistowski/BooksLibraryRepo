@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+
+To: @ViewBag.To
+From: biblioteka@lib.com
+Subject: @ViewBag.Subject
+<br />
+
+<h4>Informujemy, że Twoje konto zostało zablokowane z powodu nie zwrócenia książki w wymaganym terminie!</h4>
+<table>
+    <tr>
+        <th>Tytuł</th>
+        <th>Autor</th>
+        <th>Termin zwrotu</th>
+    </tr>
+
+    <tr>
+        <td>@ViewBag.Book.Title</td>
+        <td>@ViewBag.Book.Author</td>
+        <td>@ViewBag.ReturnDate</td>
+    </tr>
+</table>
+
+<h4>Aby konto zostało odblokowane należy niezwłocznie zwrócić książkę.</h4>

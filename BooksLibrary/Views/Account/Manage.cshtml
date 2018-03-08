@@ -1,0 +1,111 @@
+﻿@using BooksLibrary.HtmlHelperClass
+@model BooksLibrary.Models.AccountViewModel.AccountManagementViewModel
+
+@{
+    ViewBag.Title = "Ustawienia konta";
+}
+
+<h2>Ustawienia konta</h2>
+
+<fieldset>
+    <legend>Dane konta użytkownika</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Gender)
+    </div>
+    <div class="display-field">
+        @Html.GenderTranstateToPL(Model.Gender)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.UserIsEnabled)
+    </div>
+    <div class="display-field">
+        @Html.BoolToYesOrNo(Model.UserIsEnabled)
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>Adres użytkownika</legend>
+
+    @if (Model.UserAddress == null)
+    {
+        @Html.ActionLink("Dodaj adres", "AddAddress", "Account", null, new { @class = "button" })
+    }
+    else
+    {
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.UserAddress.City)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UserAddress.City)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.UserAddress.Street)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UserAddress.Street)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.UserAddress.HouseNumber)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UserAddress.HouseNumber)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.UserAddress.ZipCode)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UserAddress.ZipCode)
+        </div>
+    }
+</fieldset>
+
+<fieldset>
+    <legend>Uprawnienia</legend>
+    @foreach (var role in Model.UserRoles)
+    {
+        <div class="display-label">
+            @role
+        </div>
+    }
+</fieldset>
+
+<fieldset>
+    <legend>Opcje</legend>
+    @Html.ActionLink("Usuń konto", "DeleteAccount", "Account", new { userName = Model.UserName }, new { @class = "button" })
+    @Html.ActionLink("Zmień hasło", "ChangePassword", "Account", null, new { @class = "button" })
+    @Html.ActionLink("Edytuj dane osobowe", "EditPersonalData", "Account", null, new { @class = "button" })
+    @Html.ActionLink("Edytuj adres", "EditUserAddress", "Account", null, new { @class = "button" })
+</fieldset>

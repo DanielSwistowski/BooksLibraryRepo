@@ -1,0 +1,64 @@
+﻿@using BooksLibrary.HtmlHelperClass
+@model BooksLibrary.Models.AccountViewModel.UserAccountSettingsViewModel
+
+@{
+    ViewBag.Title = "Usuń konto";
+}
+
+<h2>Usuń konto</h2>
+
+<h3>Czy na pewno chcesz usunąć swoje konto?</h3>
+<fieldset>
+    <legend>Dane konta</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Gender)
+    </div>
+    <div class="display-field">
+        @Html.GenderTranstateToPL(Model.Gender)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.UserIsEnabled)
+    </div>
+    <div class="display-field">
+        @Html.BoolToYesOrNo(Model.UserIsEnabled)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <p>
+        <input type="submit" value="Usuń" class="button" />
+        @Html.ActionLink("Anuluj", "Manage", null, new { @class = "button" })
+    </p>
+}

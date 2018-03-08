@@ -1,0 +1,46 @@
+﻿@model BooksLibrary.Models.BookViewModels.BookIsNotAvailableViewModel
+
+@{
+    ViewBag.Title = "Książka niedostępna";
+}
+
+<h2>Książka niedostępna</h2>
+
+<h4>Wybrana przez Ciebie książka jest w tej chwili niedostępna.</h4>
+
+<fieldset>
+    <legend>Książka</legend>
+    <table>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Book.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Book.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Book.ISBN)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Book.PublishingHouse)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Book.ReleaseDate)
+            </td>
+        </tr>
+    </table>
+</fieldset>
+
+@if (ViewBag.DateInfo != null)
+{
+    <h4>Prawdopodobny termin dostepności książki: @ViewBag.DateInfo </h4>
+}
+else
+{
+    <h4>Prawdopodobny termin dostepności książki: @Html.DisplayFor(model => model.PropablyBookAvailableDate)</h4>    
+}
+
+<br />
+<p>
+    @Html.ActionLink("Wstecz", "Index", "Book", null, new { @class = "button" })
+</p>

@@ -1,0 +1,48 @@
+﻿@model BooksLibrary.Models.ReservationViewModels.ReservationViewModel
+
+@{
+    ViewBag.Title = "Anuluj rezerwację";
+}
+
+<h2>Anuluj rezerwację</h2>
+
+<h3>Czy na pewno chcesz anulować wybraną rezerwację?</h3>
+<fieldset>
+    <legend>Szczegóły rezerwacji</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Author)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Author)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ReservationDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReservationDate)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.DateOfReceipt)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateOfReceipt)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Usuń" class="button" />
+        @Html.ActionLink("Wstecz", "IndexUserReservations", null, new { @class = "button" })
+    </p>
+}

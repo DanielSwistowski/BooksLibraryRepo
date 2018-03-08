@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+
+To: @ViewBag.To
+From: biblioteka@lib.com
+Subject: @ViewBag.Subject
+<br />
+
+<h4>Informujemy, że upływa termin zwrotu następującej książki:</h4>
+<table>
+    <tr>
+        <th>Tytuł</th>
+        <th>Autor</th>
+        <th>Termin zwrotu</th>
+    </tr>
+
+    <tr>
+        <td>@ViewBag.Book.Title</td>
+        <td>@ViewBag.Book.Author</td>
+        <td>@ViewBag.ReturnDate</td>
+    </tr>
+</table>
+
+<h4>W przypadku nie zwrócenia książki w terminie konto zostanie zablokowane!</h4>

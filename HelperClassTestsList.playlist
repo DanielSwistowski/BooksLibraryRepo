@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="BooksLibrary.Tests.HtmlHelperClassTests.HelperClassTest.can_change_bool_value_to_yes_or_no" /><Add Test="BooksLibrary.Tests.HtmlHelperClassTests.HelperClassTest.can_translate_enum_gender_to_string" /><Add Test="BooksLibrary.Tests.HtmlHelperClassTests.HelperClassTest.can_change_quantity_to_string" /></Playlist>

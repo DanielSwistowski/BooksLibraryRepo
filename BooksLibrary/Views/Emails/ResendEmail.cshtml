@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+To: @ViewBag.To
+From: biblioteka@lib.com
+Subject: Potwierdzenie rejestracji w bibliotece internetowej
+
+<h3>
+    Witaj,
+</h3>
+
+<h4>
+    Dziękujemy za zarejestrowanie się w bibliotece.
+
+    Link aktywujący konto został ponownie wygenerowany.
+
+    Aby dokończyć proces rejestracji, kliknij w poniższy link:
+</h4>
+<h3>
+    http://localhost:53883/Account/ConfirmAccount/@ViewBag.ConfirmationToken
+</h3>

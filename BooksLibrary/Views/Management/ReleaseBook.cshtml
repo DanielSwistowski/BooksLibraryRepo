@@ -1,0 +1,62 @@
+﻿@model BooksLibrary.Models.ReservationViewModels.ReleaseBookViewModel
+
+@{
+    ViewBag.Title = "Potwierdź wypożyczenie książki";
+}
+
+<h2>Potwierdź wypożyczenie książki</h2>
+
+<h3>Czy na pewno chcesz wypożyczyć wybraną książkę?</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.Hidden("returnUrl", Request.UrlReferrer);
+
+    <fieldset>
+        <legend>Książka</legend>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Title)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Title)
+            @Html.HiddenFor(model => model.Title)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Author)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Author)
+            @Html.HiddenFor(model => model.Author)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.UserFullName)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UserFullName)
+            @Html.HiddenFor(model => model.UserFullName)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.RentTimeInDays)
+        </div>
+        <div class="display-field">
+            @Html.DropDownListFor(model => model.RentTimeInDays, ViewBag.RentDays as IEnumerable<SelectListItem>)
+            @Html.ValidationMessageFor(model => model.RentTimeInDays)
+        </div>
+    </fieldset>
+
+    <p>
+        <input type="submit" value="Potwierdź" class="button" />
+        @Html.ActionLink("Anuluj","RedirectToReferrerUrl", new { @returnUrl = Request.UrlReferrer, @baseAction = "ReservationsManagement" }, new { @class = "button" })
+    </p>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

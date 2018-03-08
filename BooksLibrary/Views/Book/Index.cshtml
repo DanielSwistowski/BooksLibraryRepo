@@ -1,0 +1,69 @@
+﻿@using BooksLibrary.HtmlHelperClass;
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<BooksLibrary.Models.IndexAllBooksViewModel>
+
+@{
+    ViewBag.Title = "Lista książek";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+<h2>Lista książek</h2>
+
+<div id="categories">
+    @{Html.RenderAction("CategoriesPartial", "Category", new { selectedCategory = ViewBag.CategoryFilter, management = false });}
+</div>
+
+@using (Html.BeginForm("Index", "Book", FormMethod.Get))
+{
+    @Html.Hidden("categoryFilter", ViewBag.CategoryFilter as string)
+    <input type="hidden" id="selectedCategory" value="category" />
+    <p>
+        Tytył książki: @Html.TextBox("searchBook", ViewBag.SearchBook as string)
+        Autor: @Html.TextBox("searchAuthor", ViewBag.SearchAuthor as string)
+        <input type="submit" value="Szukaj" />
+    </p>
+}
+
+<table>
+    <tr>
+        <th>
+            @Html.ActionLink("Tytuł", "Index", new { sortOrder = "title" })
+        </th>
+        <th>
+            @Html.ActionLink("Autor", "Index", new { sortOrder = "author" })
+        </th>
+        <th>Kategoria
+        </th>
+        <th>Dostępna
+        </th>
+        <th>Opcje
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.QuantityToYesOrNo(item.Quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Szczegóły", "Details", new { bookId = item.BookId })
+                @Html.ActionLink("Zarazerwuj", "AddReservation", "Reservation", new { bookId = item.BookId }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchBook = ViewBag.SearchBook, searchAuthor = ViewBag.SearchAuthor, sortOrder = ViewBag.SortOrder, categoryFilter = ViewBag.CategoryFilter }))

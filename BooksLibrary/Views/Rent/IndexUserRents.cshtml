@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BooksLibrary.Models.RentViewModel.UserRentsViewModel>
+
+@{
+    ViewBag.Title = "Wypożyczenia";
+}
+
+<h2>Wypożyczenia</h2>
+
+@Html.ValidationSummary(true)
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+
+    string selectedRow = "";
+    if (item.BookId == ViewBag.BookID)
+    {
+        selectedRow = "selectedrow";
+    }
+    
+    <tr class="@selectedRow">
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RentDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReturnDate)
+        </td>
+    </tr>
+}
+
+</table>

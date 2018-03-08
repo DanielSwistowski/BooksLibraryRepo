@@ -1,0 +1,13 @@
+﻿@model IEnumerable<BooksLibrary.Business.Models.Category>
+
+@foreach (var category in Model)
+{
+    if (ViewBag.CategoryFilter == category.CategoryName)
+    {
+        @Html.ActionLink(category.CategoryName, (string)ViewBag.Action, "Book", new { categoryFilter = category.CategoryName }, new { @class = "categoryButtonSelected" })
+    }
+    else
+    {
+        @Html.ActionLink(category.CategoryName, (string)ViewBag.Action, "Book", new { categoryFilter = category.CategoryName }, new { @class = "categoryButton" })
+    }
+}

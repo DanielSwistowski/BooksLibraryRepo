@@ -1,0 +1,62 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using BooksLibrary.HtmlHelperClass
+@model IPagedList<BooksLibrary.Models.AccountViewModel.UsersViewModel>
+
+@{
+    ViewBag.Title = "Lista użytkowników";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+<h2>Lista użytkowników</h2>
+
+@using (Html.BeginForm("Users", "Account", FormMethod.Get))
+{
+    <p>
+        Użytkownik:  @Html.TextBox("searchUser",ViewBag.SearchUser as string)
+        <input type="submit" value="Szukaj" />
+    </p>
+}
+
+<table>
+    <tr>
+        <th>
+            Nazwa użytkownika
+        </th>
+        <th>
+            Imię i nazwisko
+        </th>
+        <th>
+            E-mail
+        </th>
+        <th>
+            Aktywne konto
+        </th>
+        <th>
+            Opcje
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserFullName)
+        </td>
+        <td>
+            @Html.ActionLink(item.Email,"SendEmailToUser", new { userEmail = item.Email})
+        </td>
+        <td>
+            @Html.BoolToYesOrNo(item.UserIsEnabled)
+        </td>
+        <td>
+            @Html.ActionLink("Ustawienia konta", "UserSettings", new {  userName=item.UserName  })
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+@Html.PagedListPager(Model,page=>Url.Action("Users", new { page, searchUser = ViewBag.SearchUser}))

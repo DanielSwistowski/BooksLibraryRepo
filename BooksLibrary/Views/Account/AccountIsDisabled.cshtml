@@ -1,0 +1,22 @@
+﻿@model BooksLibrary.Models.AccountViewModel.LockAccountReasonViewModel
+
+@{
+    ViewBag.Title = "Konto zablokowane";
+}
+
+<h2>Konto zablokowane</h2>
+
+<h3>Twoje konto zostało zablokowane przez administratora!</h3>
+
+<br />
+
+<h4>@Html.DisplayNameFor(model=>model.LockReason):&nbsp @Html.DisplayFor(model=> model.LockReason)</h4>
+
+<h4>W celu uzyskania dodatkowych informacji możesz skontaktować się z administratorem: &nbsp  @Html.ActionLink("Napisz wiadomość","ContactWithAdministrator")</h4>
+
+<h4>
+    @if (Model.ReturnBookDateExpired)
+    {
+        @Html.ActionLink("Lista niezwróconych książek","SendListWithNotReturnedBooks")
+    }
+</h4>

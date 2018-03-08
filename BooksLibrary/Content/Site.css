@@ -1,0 +1,370 @@
+﻿/*Added styles
+-----------------------------------------------------------*/
+html {
+    height: 100%;
+    background: lightgray;
+}
+
+body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    min-height: 100%;
+    position: relative;
+}
+
+p a {
+    text-decoration: none;
+        font-weight: bold;
+        color: #000099;
+}
+
+.display-field a {
+    text-decoration: none;
+        font-weight: bold;
+        color: #000099;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: gray;
+}
+
+#site-title {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+    #site-title a, #site-title a:hover, #site-title a:active {
+        background: none;
+        color: white;
+        outline: none;
+        text-decoration: none;
+    }
+
+#login-form {
+    font-size: 0.9em;
+    margin-right: 5px;
+    margin-top: 5px;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.box {
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+ul#menu {
+    font-size: 1.5em;
+    margin: 0 !important;
+}
+
+    ul#menu li {
+        display: inline;
+        list-style: none;
+        padding-left: 10px;
+    }
+
+        ul#menu li:first-child {
+            padding-left: 0px;
+        }
+
+        ul#menu li a {
+            background: none;
+            color: yellow;
+            text-decoration: none;
+        }
+
+            ul#menu li a:hover {
+                color: blue;
+                text-decoration: none;
+            }
+
+#control-panel {
+    border: 1px solid red;
+    padding: 0 10px 10px 10px;
+    background-color: orange;
+}
+
+#management-menu {
+    margin: 0;
+}
+
+ul#management-menu {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+    ul#management-menu li {
+        display: inline;
+        list-style: none;
+        padding-left: 10px;
+    }
+
+        ul#management-menu li:first-child {
+            padding-left: 0;
+        }
+
+        ul#management-menu li a {
+            background: none;
+            color: white;
+            text-decoration: none;
+        }
+
+            ul#management-menu li a:hover {
+                color: blue;
+                text-decoration: none;
+            }
+
+section {
+    height: auto;
+    padding: 10px;
+    text-align: justify;
+    padding-bottom: 40px;
+    margin-top: 15px;
+}
+
+footer {
+    position: absolute;
+    height: 30px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background: orange;
+}
+
+.clear {
+    clear: both;
+}
+
+#categories {
+    height:auto;
+    padding-top: 10px;
+    padding-bottom:10px;
+    margin-bottom:10px;
+}
+
+.categoryButton {
+    background-color: #000066;
+    border: none;
+    color: white;
+    padding: 5px;
+    margin-right: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.categoryButtonSelected {
+    background-color: #ffaa00;
+    border: none;
+    color: white;
+    padding: 5px;
+    margin-right: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .categoryButton:active, .active {
+    background-color: #ffaa00;
+}
+
+/************************table style************************/
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 5px;
+}
+
+td {
+    word-wrap: break-word;
+}
+
+    td:last-child {
+        text-align: right;
+    }
+
+    td:nth-last-child(2) {
+        text-align: center;
+    }
+
+    td:nth-last-child(3) {
+        text-align: center;
+    }
+
+th {
+    text-align: center;
+    height: 30px;
+    font-size: 1.1em;
+    padding-bottom: 15px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000099;
+}
+
+/************************my styles for basic forms************************/
+.display-label {
+    float: left;
+    margin-bottom: 5px;
+}
+
+.display-field {
+    margin-left: 150px;
+    margin-bottom: 5px;
+}
+
+.button {
+    background-color: #000066;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    margin-right: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .button:hover {
+        background-color: #ffaa00;
+    }
+
+header, footer, nav, section {
+    display: block;
+}
+
+/*Login form*/
+#login-form {
+    display: block;
+    font-size: .85em;
+    margin: 0 0 10px;
+    text-align: right;
+}
+
+    #login-form a {
+        background-color: #d3dce0;
+        margin-left: 10px;
+        margin-right: 3px;
+        padding: 2px 3px;
+        text-decoration: none;
+    }
+
+        #login-form a.username {
+            background: none;
+            margin: 0;
+            padding: 0;
+            text-decoration: underline;
+        }
+
+    #login-form ul {
+        margin: 0;
+    }
+
+    #login-form li {
+        display: inline;
+        list-style: none;
+    }
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 1.2em 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+    width: 50%;
+}
+
+.editor-label {
+    font-weight:bold;
+    margin: 1em 0 0 0;
+}
+
+.editor-field, .editor-field-add-book, .editor-field-number {
+    margin: 0.5em 0 0 0;
+}
+
+.editor-field-add-book input {
+    width: 40%;
+}
+
+    .editor-field-number input {
+        width: 60px;
+    }
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+/*My helper*/
+.selectedrow {
+    border: 1px solid red;
+}
+
+#message {
+    color: green;
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+
+
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}

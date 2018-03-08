@@ -1,0 +1,66 @@
+﻿@model BooksLibrary.Models.AccountViewModel.LogUserViewModel
+
+@{
+    ViewBag.Title = "Logowanie";
+}
+
+<h2>Logowanie</h2>
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.ValidationMessage("accountIsNotConfirm")
+    if (ViewBag.ResendActivationLinkIsVisible == "showResendEmailLink")
+    {
+        <p>
+            @Html.ActionLink("Wygeneruj e-mail", "ResendActivationEmail", "Account")
+        </p>
+        <br />
+    }
+
+    <fieldset>
+        <legend>Dane logowania</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RememberMe)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RememberMe)
+            @Html.ValidationMessageFor(model => model.RememberMe)
+        </div>
+
+        <p>
+            <input type="submit" value="Zaloguj" class="button" />
+        </p>
+
+        <br />
+        <p>
+            Zapomniałeś hasła? 
+            @Html.ActionLink("Odzyskaj je!", "LostPassword","Account")
+        </p>
+
+    </fieldset>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+
+To: @ViewBag.To
+Subject: @ViewBag.Subject
+<br />
+
+<table>
+    <tr>
+        <th>Tytuł</th>
+        <th>Autor</th>
+        <th>Termin zwrotu</th>
+    </tr>
+    @foreach (var book in ViewBag.Message)
+    {
+        <tr>
+            <td>@book.Book.Title</td>
+            <td>@book.Book.Author</td>
+            <td>@book.ReturnDate</td>
+        </tr>
+    }
+</table>
+
+<h4>Aby konto zostało odblokowane, należy zwrócić wszystkie książki!</h4>

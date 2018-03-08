@@ -1,0 +1,44 @@
+﻿@model BooksLibrary.Models.AccountViewModel.EnableOrDisableAccountViewModel
+
+@{
+    ViewBag.Title = "Zablokuj konto użytkownia";
+}
+
+<h2>Zablokuj konto użytkownia</h2>
+
+<h3>Czy na pewno chcesz zablokować konto użytkownika?</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Szczegóły</legend>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.UserName)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.DisplayNameFor(model => model.LockReason)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model =>model.LockReason)
+            @Html.ValidationMessageFor(model=>model.LockReason)
+        </div>
+    </fieldset>
+
+   
+    <p>
+        <input type="submit" value="Zablokuj" class="button" />
+        @Html.ActionLink("Anuluj", "UserSettings", new { userName = Model.UserName }, new { @class = "button" })
+    </p>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

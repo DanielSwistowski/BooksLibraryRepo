@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <header>
+        <div class="box">
+            <div class="float-left">
+                <p id="site-title">@Html.ActionLink("Biblioteka", "Index", "Home")</p>
+            </div>
+            <div class="float-right">
+                <div id="login-form">
+                   @Html.Partial("_LoginPartial")
+                </div>
+                <nav>
+                    <ul id="menu">
+                        <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Lista książek", "Index", "Book")</li>
+                        <li>@Html.ActionLink("Rezerwacje", "IndexUserReservations", "Reservation")</li>
+                        <li>@Html.ActionLink("Wypożyczenia", "IndexUserRents", "Rent")</li>
+                        <li>@Html.ActionLink("O nas", "About", "Home")</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </header>
+    <div class="box">
+        <div class="float-right">
+            @Html.Action("ManagementPanel", "Management")
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="box">
+        <section>
+            @if (TempData["message"] != null)
+            {
+                <div id="message">
+                    @TempData["message"]
+                </div>
+            }
+            @RenderBody()
+        </section>
+    </div>
+
+    <footer>
+        <div class="box">
+            <p>&copy; @DateTime.Now.Year - Biblioteka &nbsp <a href="http://localhost:53883/hangfire">Dashboard</a></p>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
